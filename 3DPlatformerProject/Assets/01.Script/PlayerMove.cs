@@ -28,24 +28,24 @@ public class PlayerMove : MonoBehaviour
             // 위, 아래 움직임 셋팅. 
             MoveDir = new Vector3(-Input.GetAxis("Horizontal"), 0, 0);
 
-            //MoveDir = transform.TransformDirection(MoveDir);
+            MoveDir = transform.TransformDirection(MoveDir);
             // 스피드 증가.
             MoveDir *= speed;
 
             // 캐릭터 점프
             characterModel.transform.eulerAngles = new Vector3(0, MoveDir.x * 90, 0);
-            // 벡터를 로컬 좌표계 기준에서 월드 좌표계 기준으로 변환한다.
+            // 벡터를 로컬 좌표계 기준에서 월드 좌표계 기준으로 변환한다
         }
-        if (controller.isGrounded)
+
+        if (Physics.Raycast(transform.position, transform.position + Vector3.down / 4, 1, 1 << 7))
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 Debug.Log(1);
-                extraPower += Time.deltaTime;
+                extraPower += Time.deltaTime * 5;
                 if (extraPower >= maxAddtionalPower)
                     extraPower = maxAddtionalPower;
             }
-
             //if (Input.GetMouseButtonUp(0))
             if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -57,5 +57,10 @@ public class PlayerMove : MonoBehaviour
 
         MoveDir.y -= gravity * Time.deltaTime;
         controller.Move(MoveDir * Time.deltaTime);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down / 4);
     }
 }
