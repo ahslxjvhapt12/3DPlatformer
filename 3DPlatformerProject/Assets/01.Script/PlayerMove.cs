@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Debug.Log(2);
                 MoveDir.y = jumpPower + extraPower;
-                extraPower = 0;
+                extraPower = 0; 
             }
         }
         else

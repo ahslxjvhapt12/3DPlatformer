@@ -13,9 +13,4 @@ public class Nest : MonoBehaviour
             Debug.Log("»õ µµÂø");
         }
     }
-
-    private void OnDrawGizmos()
-    {
-
-    }
 }
