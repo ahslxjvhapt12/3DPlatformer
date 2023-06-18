@@ -13,9 +13,8 @@ public class PlayerMove : MonoBehaviour
     public float extraPower = 0;
 
     private CharacterController controller; // 현재 캐릭터가 가지고있는 캐릭터 컨트롤러 콜라이더.
-    private Vector3 MoveDir = Vector3.zero;                // 캐릭터의 움직이는 방향.
+    private Vector3 MoveDir = Vector3.zero; // 캐릭터의 움직이는 방향.
     [SerializeField] GameObject characterModel;
-
 
     public bool flag = false;
     void Awake()
@@ -56,7 +55,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Debug.Log(2);
                 MoveDir.y = jumpPower + extraPower;
-                extraPower = 0; 
+                extraPower = 0;
             }
         }
         else
