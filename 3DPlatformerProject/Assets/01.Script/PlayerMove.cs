@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float speed = 6.0f;      // 캐릭터 움직임 스피드.
-    public float jumpPower = 8.0f; // 캐릭터 점프 힘.
-    public float gravity = 20.0f;    // 캐릭터에게 작용하는 중력.
+    [Range(0, 10f)] public float speed;      // 캐릭터 움직임 스피드.
+    [Range(0, 10f)] public float jumpPower; // 캐릭터 점프 힘.
+    [Range(0, 100f)] public float gravity;    // 캐릭터에게 작용하는 중력.
 
-    public float maxAdditionalPower = 3;
+    [Range(0, 10f)] public float maxAdditionalPower;
 
     public float extraPower = 0;
 
@@ -16,7 +16,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private Vector3 MoveDir = Vector3.zero; // 캐릭터의 움직이는 방향.
     [SerializeField] GameObject characterModel;
 
+    [SerializeField] AudioSource audioSource;
+
     public bool flag = false;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -56,6 +59,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Debug.Log(2);
                 MoveDir.y = jumpPower + extraPower;
+                audioSource?.Play();
                 extraPower = 0;
             }
         }

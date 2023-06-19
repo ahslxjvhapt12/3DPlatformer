@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
-using UnityEditor.Search;
 using UnityEngine.UI;
 
 public class GameStart : MonoBehaviour
