@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Nest : MonoBehaviour
+public class MailBox : MonoBehaviour
 {
-
     private void Update()
     {
         Collider[] cols = Physics.OverlapSphere(transform.position + new Vector3(0, 1, 0), 0.5f, 1 << 6);

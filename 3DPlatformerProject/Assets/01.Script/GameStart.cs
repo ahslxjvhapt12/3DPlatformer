@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Cinemachine;
+using UnityEditor.Search;
+using UnityEngine.UI;
 
 public class GameStart : MonoBehaviour
 {
@@ -20,6 +22,9 @@ public class GameStart : MonoBehaviour
     [SerializeField] GameObject pause;
     [SerializeField] GameObject pauseBeforePos;
     [SerializeField] GameObject pauseAfterPos;
+    [SerializeField] Button reset;
+
+    [SerializeField] GameObject player;
 
     bool trigger = false;
 
@@ -49,6 +54,7 @@ public class GameStart : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                reset.interactable = true;
                 pause.transform.DOMove(pauseAfterPos.transform.position, 1).SetUpdate(true);
                 Cursor.visible = true;
                 Time.timeScale = 0;
@@ -85,10 +91,34 @@ public class GameStart : MonoBehaviour
         Application.Quit();
     }
 
+    public void ResetPosition()
+    {
+        Time.timeScale = 1;
+        Sequence seq = DOTween.Sequence()
+            .AppendCallback(() =>
+            {
+                player.transform.GetComponent<PlayerMove>().enabled = false;
+                player.transform.GetComponent<CharacterController>().enabled = false;
+                player.transform.position = new Vector3(16f, 0f, 0f);
+                Resume();
+            })
+            .AppendInterval(0.3f)
+            .PrependCallback(() =>
+            {
+                player.transform.GetComponent<PlayerMove>().enabled = true;
+                player.transform.GetComponent<CharacterController>().enabled = true;
+            });
+    }
+
     public void Resume()
     {
         Time.timeScale = 1;
         Cursor.visible = false;
-        pause.transform.DOMove(pauseBeforePos.transform.position, 1).SetUpdate(true);
+        Sequence seq = DOTween.Sequence()
+            .Append(pause.transform.DOMove(pauseBeforePos.transform.position, 1).SetUpdate(true))
+            .PrependCallback(() =>
+            {
+                reset.interactable = false;
+            });
     }
 }

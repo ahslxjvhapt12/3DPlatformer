@@ -20,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+        transform.position = new Vector3(PlayerPrefs.GetFloat("X", 16), PlayerPrefs.GetFloat("Y", -2), 0);
     }
 
     void Update()
@@ -65,6 +66,12 @@ public class PlayerMove : MonoBehaviour
 
         MoveDir.y -= gravity * Time.deltaTime;
         controller.Move(MoveDir * Time.deltaTime);
+    }
+
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetFloat("X", transform.position.x);
+        PlayerPrefs.SetFloat("Y", transform.position.y);
     }
 
     private void OnDrawGizmosSelected()
