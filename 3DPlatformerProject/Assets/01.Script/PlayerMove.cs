@@ -13,7 +13,7 @@ public class PlayerMove : MonoBehaviour
     public float extraPower = 0;
 
     private CharacterController controller; // 현재 캐릭터가 가지고있는 캐릭터 컨트롤러 콜라이더.
-    private Vector3 MoveDir = Vector3.zero; // 캐릭터의 움직이는 방향.
+    [SerializeField] private Vector3 MoveDir = Vector3.zero; // 캐릭터의 움직이는 방향.
     [SerializeField] GameObject characterModel;
 
     public bool flag = false;
@@ -33,10 +33,10 @@ public class PlayerMove : MonoBehaviour
 
             MoveDir = transform.TransformDirection(MoveDir);
             // 스피드 증가.
-            MoveDir *= speed;
-
             // 캐릭터 점프
             characterModel.transform.eulerAngles = new Vector3(0, MoveDir.x * 90, 0);
+
+            MoveDir *= speed;
             // 벡터를 로컬 좌표계 기준에서 월드 좌표계 기준으로 변환한다
         }
         Ray ray = new Ray(transform.position, -transform.up);

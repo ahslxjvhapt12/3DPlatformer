@@ -25,6 +25,7 @@ public class GameStart : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
         SetScale();
     }
 
@@ -49,6 +50,7 @@ public class GameStart : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 pause.transform.DOMove(pauseAfterPos.transform.position, 1).SetUpdate(true);
+                Cursor.visible = true;
                 Time.timeScale = 0;
             }
         }
@@ -86,6 +88,7 @@ public class GameStart : MonoBehaviour
     public void Resume()
     {
         Time.timeScale = 1;
+        Cursor.visible = false;
         pause.transform.DOMove(pauseBeforePos.transform.position, 1).SetUpdate(true);
     }
 }
