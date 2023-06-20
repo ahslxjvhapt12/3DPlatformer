@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC30\uB2EC \uB05D...."
+  m_text: "\uBC30\uB2EC \uC131\uACF5. . . !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 56e0dd32155fa08478f58a0735d78741, type: 2}
   m_sharedMaterial: {fileID: 5263587117032608529, guid: 56e0dd32155fa08478f58a0735d78741, type: 2}
