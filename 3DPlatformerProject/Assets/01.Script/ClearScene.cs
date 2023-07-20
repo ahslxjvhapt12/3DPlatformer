@@ -10,9 +10,10 @@ public class ClearScene : MonoBehaviour
 {
 
     [SerializeField] Image image;
-    TextMeshProUGUI text;
+    
     private void Awake()
     {
+        Cursor.visible = true;
         image.DOFade(0f, 1f);
     }
 
